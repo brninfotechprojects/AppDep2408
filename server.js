@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const multer = require("multer");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const path = require("path");
 const dotenv = require("dotenv");
 dotenv.config();
 
