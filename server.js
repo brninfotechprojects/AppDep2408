@@ -23,7 +23,7 @@ app.use(cors());
 app.use(express.json()); //to collect JSON data from req and assigns to req.body
 app.use(express.urlencoded()); //to collect URLEncoded data from req and assigns to req.body
 app.use("/profilePics", express.static("profilePics"));
-
+app.use(express.static(path.join(__dirname, "./client/build")));
 let authorize = (req, res, next) => {
   console.log("inside authorise emw");
   let token = req.headers["authorization"];
@@ -32,6 +32,10 @@ let authorize = (req, res, next) => {
 };
 
 app.use(authorize);
+
+app.get("*", (req, res) => {
+  res.sendFile("./client/build/index.html");
+});
 
 app.post("/signup", upload.single("profilePic"), async (req, res) => {
   console.log(req.body);
